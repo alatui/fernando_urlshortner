@@ -37,6 +37,7 @@ class URLController extends Controller{
 
     public function redirect($code){
         $shortUrl = $this->shortUrl->where('code','=',$code)->firstOrFail();
+        $shortUrl->increment('redirects');
         return redirect($shortUrl->getUrl());
     }
 
