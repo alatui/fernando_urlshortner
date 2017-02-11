@@ -28,14 +28,16 @@
             <div class="col-md-6"><h3>Últimas URLs encurtadas</h3>
                 <ul>
                     @foreach ($latest as $url)
-                        <li><a href="{{ $baseUrl }}/{{ $url->code }}">{{ $url->getUrl() }}</a> <strong><small>{{$url->created_at->diffForHumans()}}</small></strong></li>
+                        <li><a href="{{ $baseUrl }}/{{ $url->code }}">{{ $url->getUrl() }}</a> <span class="badge"><small>{{$url->created_at->diffForHumans()}}</small></span></li>
                     @endforeach
                 </ul>
             </div>
             <div class="col-md-6"><h3>Top URLs</h3>
-                    @foreach ($top as $url)
-                        <li><a href="{{ $baseUrl }}/{{ $url->code }}">{{ $url->getUrl() }}</a> <strong><small>{{$url->redirects}} redirects</small></strong></li>
-                    @endforeach
+                    <ol>
+                        @foreach ($top as $url)
+                        <li><a href="{{ $baseUrl }}/{{ $url->code }}">{{ $url->getUrl() }}</a>  <span class="badge"><small>{{$url->redirects}} {{str_plural('redirecionamento',$url->redirects)}}</small></span></li>
+                        @endforeach
+                    </ol>
             </div>
         </div>
     </div>
