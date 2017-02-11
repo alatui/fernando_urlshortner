@@ -16,7 +16,10 @@ class URLController extends Controller{
     }
 
     public function home(){
-        return view('shortener.home');
+        $top = ShortUrl::orderBy('redirects','desc')->take(10)->get();
+        $latest = ShortUrl::latest()->take(10)->get();
+        $baseUrl =config('app.url');
+        return view('shortener.home', compact('top','latest','baseUrl'));
     }
 
     public function show($code){

@@ -29,7 +29,7 @@ class ShortUrl extends Model{
 
     public function getUrl(){
         if(strpos($this->url,'://')!==false){
-            return $this->url;    
+            return $this->url;
         }
         return 'http://'.$this->url;
     }
